@@ -1,0 +1,8 @@
+{% extends './layout.html' %}
+{% block title %} 博客 {% endblock %}
+
+{% block content %}
+
+    <div id="app">{% autoescape %} {{initialHTML}} {% endautoescape %}</div>
+
+{% endblock %}
