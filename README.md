@@ -22,7 +22,7 @@ An express-based Node.js web application bootstrapping module, extends kraken-js
 本脚手架基于yeoman-generator，需先全局安装yeoman-generator
 
 ```
-npm install yeoman-generator -g
+npm install yo -g
 ```
 
 ### install
@@ -30,7 +30,7 @@ npm install yeoman-generator -g
 on windows
 
 ```
- npm install generator-wx-react -g 
+ npm install generator-wx-vue -g 
  yo wx-vue
 ```
 
