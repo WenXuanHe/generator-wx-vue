@@ -44,7 +44,27 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                use: ['babel-loader'],
+                use: [{
+                    loader: 'babel-loader',
+                    options:{
+                        "presets": [
+                          ["env", {
+                            "modules": false,
+                            "targets": {
+                              "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+                            }
+                          }],
+                          "stage-2"
+                        ],
+                        "plugins": ["transform-runtime"],
+                        "env": {
+                          "test": {
+                            "presets": ["env", "stage-2"],
+                            "plugins": ["istanbul"]
+                          }
+                        }
+                      }
+                }],
                 exclude: /node_modules/
             },
             {
@@ -69,7 +89,13 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.vue', '.json'],
         alias: {
-            vue: 'vue/dist/vue.js'
+            'vue': 'vue/dist/vue.js',
+            '$components': path.resolve(__dirname, "../", 'src/client/components'),
+            '$router': path.resolve(__dirname, "../", 'src/client/router'),
+            '$store': path.resolve(__dirname, "../", 'src/client/store'),
+            '$utils': path.resolve(__dirname, "../", 'src/client/utils'),
+            '$views': path.resolve(__dirname, "../", 'src/client/views'),
+            '$apis': path.resolve(__dirname, "../", 'src/client/apis')
         }
     },
     plugins: [

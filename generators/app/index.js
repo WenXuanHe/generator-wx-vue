@@ -20,8 +20,11 @@ module.exports = class extends Generator {
     constructor(args, opts) {
         super(args, opts);
         this.answers = null;
+        this.importGraphql="import graphql from './routes/graphql'";
+        this.useGraphql="app.use(graphql.routes(), graphql.allowedMethods());";
         this.appname = "wx-vue";
     }
+
     paths() {
         this.sourceRoot();
     }
@@ -38,13 +41,23 @@ module.exports = class extends Generator {
             default: this.appname // Default to current folder name
         }, {
             type: 'list',
+            name: 'model',
+            message: 'Select the reaction model',
+            choices: ['restful', 'graphql']
+        },{
+            type: 'list',
             name: 'preprocessor',
             message: 'Select the CSS preprocessor',
-            choices: ['◉ PostCSS', '◉ Sass']
+            choices: ['PostCSS', 'Sass']
         }]).then((answers) => {
-            this.log('app name', answers.name);
+            this.log('app model', answers.model);
             this.answers = answers;
             this.appname = answers.name;
+            console.log("answers.model", answers.model);
+            if(answers.model === "restful"){
+                this.importGraphql="";
+                this.useGraphql="";
+            }
             if (answers.preprocessor) {
                 this.log(chalk.yellow(
                     '预处理已被我强烈建议成PostCSS💻'
@@ -62,9 +75,96 @@ module.exports = class extends Generator {
             this.templatePath('build'),
             this.destinationPath(_path + '/build')
         );
+        // --------------------src--------------------------
+        this.fs.copyTpl(
+            this.templatePath('src/app.js'),
+            this.destinationPath(_path + '/src/app.js')
+        );
+        this.fs.copyTpl(
+            this.templatePath('src/App.vue'),
+            this.destinationPath(_path + '/src/App.vue')
+        );
+        this.fs.copyTpl(
+            this.templatePath('src/entry-client.js'),
+            this.destinationPath(_path + '/src/entry-client.js')
+        );
+        this.fs.copyTpl(
+            this.templatePath('src/entry-server.js'),
+            this.destinationPath(_path + '/src/entry-server.js')
+        );
+        this.fs.copyTpl(
+            this.templatePath('src/index.html'),
+            this.destinationPath(_path + '/src/index.html')
+        );
         this.fs.copy(
-            this.templatePath('src'),
-            this.destinationPath(_path + '/src')
+            this.templatePath('src/service/model'),
+            this.destinationPath(_path + '/src/service/model')
+        );
+        this.fs.copy(
+            this.templatePath('src/service/routes'),
+            this.destinationPath(_path + '/src/service/routes')
+        );
+         this.fs.copy(
+            this.templatePath('src/client/components'),
+            this.destinationPath(_path + '/src/client/components')
+        );
+          this.fs.copy(
+            this.templatePath('src/client/router'),
+            this.destinationPath(_path + '/src/client/router')
+        );
+        this.fs.copy(
+            this.templatePath('src/client/store'),
+            this.destinationPath(_path + '/src/client/store')
+        );
+        this.fs.copy(
+            this.templatePath('src/client/utils'),
+            this.destinationPath(_path + '/src/client/utils')
+        );
+        this.fs.copy(
+            this.templatePath('src/client/views'),
+            this.destinationPath(_path + '/src/client/views')
+        );
+        this.fs.copyTpl(
+            this.templatePath('src/client/store/actions.js'),
+            this.destinationPath(_path + '/src/client/store/actions.js'), {
+                model: this.answers.model,
+                passenger: this.answers.model === 'graphql'? 'passenger' : 'data',
+                companyInfo: this.answers.model === 'graphql' ? 'companyInfo' : 'data',
+                departNames: this.answers.model === 'graphql' ? 'departNames' : 'data',
+                commonPassenger:  this.answers.model === 'graphql' ? 'commonPassenger' : 'data'
+        });
+
+        if(this.answers.model === 'graphql'){
+            this.fs.copyTpl(
+                this.templatePath('src/service/routes.graphql.js'),
+                this.destinationPath(_path + '/src/service/routes/graphql.js')
+            );
+            this.fs.copy(
+                this.templatePath('src/service/graph'),
+                this.destinationPath(_path + '/src/service/graph')
+            );
+            this.fs.copyTpl(
+                this.templatePath('src/client/apis/graphql.js'),
+                this.destinationPath(_path + '/src/client/apis/graphql.js')
+            );
+            this.fs.copyTpl(
+                this.templatePath('src/service/app.graphql.js'),
+                this.destinationPath(_path + '/src/service/app.js')
+            );
+        }else{
+            this.fs.copyTpl(
+                this.templatePath('src/client/apis/restful.js'),
+                this.destinationPath(_path + '/src/client/apis/restful.js')
+            );
+            this.fs.copyTpl(
+                this.templatePath('src/service/app.js'),
+                this.destinationPath(_path + '/src/service/app.js')
+            );
+        }
+        // -----------------------src-------------------------
+        this.fs.copy(
+            this.templatePath('test'),
+            this.destinationPath(_path + '/test')
         );
         this.fs.copyTpl(
             this.templatePath('.babelrc'),

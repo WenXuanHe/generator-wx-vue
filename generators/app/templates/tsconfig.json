@@ -6,7 +6,16 @@
         "noImplicitReturns": true,
         "module": "es2015",
         "moduleResolution": "node",
-        "target": "es5"
+        "target": "es5",
+        "baseUrl":"/",
+        "paths": {
+            "$components/*": ["src/client/components/*"],
+            "$router/*": ["src/client/router/*"],
+            "$store/*": ["src/client/store/*"],
+            "$utils/*": ["src/client/utils/*"],
+            "$views/*": ["src/client/views/*"],
+            "$apis/*": ["src/client/apis/*"]
+        }
     },
     "include": [
         "./src/client/**/*"

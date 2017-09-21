@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './components/Home'
+import Home from '$views/Home'
 
 Vue.use(Router)
 
@@ -11,7 +11,7 @@ export function createRouter() {
         base: __dirname,
         routes: [
             { path: '/index', component: Home },
-            { path: '/test', component: () => import('./components/Test.vue') },
+            { path: '/test', component: () => import('$components/Test.vue') },
         ]
     })
 }

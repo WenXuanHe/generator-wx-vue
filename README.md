@@ -1,41 +1,38 @@
+# generator-wx-vue [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+> 
 
-![](/assets/logo_a7f0d3c.png)
+## Installation
 
-# 基于koa2和vue的PC端脚手架
+First, install [Yeoman](http://yeoman.io) and generator-wx-vue using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
-An express-based Node.js web application bootstrapping module, extends kraken-js.
-
-###主要特性
-
-1.默认配置Vue，Vue-router，vuex，因此，主要适用于较大，较复杂的项目。
-
-2.首屏使用SSR服务端渲染，优化首屏渲染时间;非首屏页面支持js按需加载，进一步减少js加载时间。
-
-3.配置karma，e2e测试文件，可快速，方便的书写单元测试。
-
-4.配置travis选项，一件部署到服务器。
-
-5.支持mock模拟调用后端接口，从此不再依赖后端。
-
-
-###依赖
-本脚手架基于yeoman-generator，需先全局安装yeoman-generator
-
-```
-npm install yo -g
+```bash
+npm install -g yo
+npm install -g generator-wx-vue
 ```
 
-### install
+Then generate your new project:
 
-on windows
-
-```
- npm install generator-wx-vue -g 
- yo wx-vue
+```bash
+yo wx-vue
 ```
 
-联系我 1061752323@qq.com
+## Getting To Know Yeoman
+
+ * Yeoman has a heart of gold.
+ * Yeoman is a person with feelings and opinions, but is very easy to work with.
+ * Yeoman can be too opinionated at times but is easily convinced not to be.
+ * Feel free to [learn more about Yeoman](http://yeoman.io/).
+
+## License
+
+Apache-2.0 © [hewenxuan]()
 
 
-
-
+[npm-image]: https://badge.fury.io/js/generator-wx-vue.svg
+[npm-url]: https://npmjs.org/package/generator-wx-vue
+[travis-image]: https://travis-ci.org//generator-wx-vue.svg?branch=master
+[travis-url]: https://travis-ci.org//generator-wx-vue
+[daviddm-image]: https://david-dm.org//generator-wx-vue.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org//generator-wx-vue
+[coveralls-image]: https://coveralls.io/repos//generator-wx-vue/badge.svg
+[coveralls-url]: https://coveralls.io/r//generator-wx-vue

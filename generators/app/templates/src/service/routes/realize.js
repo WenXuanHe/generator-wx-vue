@@ -1,8 +1,10 @@
-const { createBundleRenderer } = require('vue-server-renderer');
-const cheerio = require('cheerio')
-const template = require('fs').readFileSync('./src/index.html', 'utf-8')
-const serverBundle = require('../../../dist/vue-ssr-server-bundle.json')
-const clientManifest = require('../../../dist/vue-ssr-client-manifest.json')
+import { createBundleRenderer } from 'vue-server-renderer'
+import fs from 'fs'
+import path from 'path'
+import * as serverBundle from '../../../dist/vue-ssr-server-bundle.json'
+import * as clientManifest from '../../../dist/vue-ssr-client-manifest.json'
+
+const template = fs.readFileSync('./src/index.html', 'utf-8')
 
 // const $ = cheerio.load(template);
 const renderer = createBundleRenderer(serverBundle, {
@@ -11,18 +13,19 @@ const renderer = createBundleRenderer(serverBundle, {
     clientManifest // （可选）客户端构建 manifest
 })
 
-module.exports = {
+export const renderToString = function (url) {
 
-    renderToString: function (url) {
+    return new Promise(function (resolve, reject) {
 
-        return new Promise(function (resolve, reject) {
+        renderer.renderToString({ url }, (err, html) => {
 
-            renderer.renderToString({ url }, (err, html) => {
+            if (err) reject(err);
 
-                if (err) reject(err);
-
-                resolve(html);
-            })
+            resolve(html);
         })
-    }
-};
+    })
+}
+
+export default {
+    renderToString
+}

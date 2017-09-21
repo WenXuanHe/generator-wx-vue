@@ -9,6 +9,7 @@ import co from 'co'
 import path from 'path'
 import index from './routes/index'
 import apis from './routes/apis'
+import graphql from './routes/graphql'
 
 const app = new Koa()
 const router = Router()
@@ -39,6 +40,7 @@ app.use(views(way.views), {
 
 app.use(index.routes(), index.allowedMethods());
 app.use(apis.routes(), apis.allowedMethods());
+app.use(graphql.routes(), graphql.allowedMethods());
 let port = 80;
 app.listen(port);
 console.log(`server on ${port}`);
