@@ -1,8 +1,8 @@
 {
   "name": "generator-wx-vue",
-  "version": "0.0.0",
+  "version": "0.1.1",
   "description": "",
-  "homepage": "",
+  "homepage": "https://github.com/WenXuanHe/generator-wx-vue",
   "author": {
     "name": "hewenxuan",
     "email": "hewenxuan@kf5.com",

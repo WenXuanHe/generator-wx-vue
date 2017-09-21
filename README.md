@@ -1,7 +1,8 @@
-# generator-wx-vue [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> 
+# generator-wx-vue [![NPM version][npm-image]]
 
-## Installation
+## 基于koa2和vue的PC端脚手架
+
+### Installation
 
 First, install [Yeoman](http://yeoman.io) and generator-wx-vue using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
@@ -16,12 +17,16 @@ Then generate your new project:
 yo wx-vue
 ```
 
-## Getting To Know Yeoman
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+## Getting To Know
+
+ * 默认配置vue+vue-router+vuex，适用于较大项目
+ * 利用webpack配置vue的服务端渲染，首屏直出，其余页面惰性加载
+ * 配置travis持续集成，一件键署到服务器
+ * 配置typeScript config，可在.ts文件直接使用typeScript
+ * 配置karma，e2e测试文件，可快速，方便的书写单元测试
+ * 配置了restful和graphQl两种方式请求服务器，可根据需要选择
+ * 默认配置postcss+cssNext书写css
 
 ## License
 
