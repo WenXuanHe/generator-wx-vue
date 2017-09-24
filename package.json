@@ -1,6 +1,6 @@
 {
   "name": "generator-wx-vue",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "",
   "homepage": "https://github.com/WenXuanHe/generator-wx-vue",
   "author": {
@@ -16,6 +16,10 @@
     "",
     "yeoman-generator"
   ],
+  "repository": {
+    "url": "https://github.com/WenXuanHe/generator-wx-vue.git",
+    "type": "git"
+},
   "devDependencies": {
     "yeoman-test": "^1.6.0",
     "yeoman-assert": "^3.0.0",
@@ -46,6 +50,8 @@
       "node": true
     }
   },
-  "repository": "/generator-wx-vue",
+  "bugs": {
+    "url": "https://github.com/WenXuanHe/generator-wx-vue/issues"
+},
   "license": "Apache-2.0"
 }
